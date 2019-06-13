@@ -1,0 +1,24 @@
+//
+// MongoDB initialization
+//
+////////////////////////////////////////////////
+// The following variables should be set by you
+////////////////////////////////////////////////
+var serviceAccount = ''; // same as application environment variable MONGODB_SERVICE_USER
+var serviceSecret = '';  // same as application environment variable MONGODB_SERVICE_SECRET
+var guestAccount = '';   // same as application environment variable MONGODB_GUEST_USER
+var guestSecret = '';    // same as application environment variable MONGODB_GUEST_SECRET
+var dbname = 'airr';
+var collectionName = "rearrangement";
+
+// No need to change anything below this comment line!
+var conn = new Mongo();
+var db = conn.getDB("admin");
+
+// Create service account
+db.createUser({ user: serviceAccount, pwd: serviceSecret, roles: [{ role: "userAdminAnyDatabase", db: "admin" }] });
+db.grantRolesToUser(serviceAccount, [{ "role": "userAdmin", "db": dbname }]);
+db.grantRolesToUser(serviceAccount, [{ "role": "readWrite", "db": dbname }]);
+
+// Create guest account
+db.createUser({ user: guestAccount, pwd: guestSecret, roles: [{ role: "readWrite", db: dbname }] });
