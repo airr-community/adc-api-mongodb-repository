@@ -4,6 +4,10 @@ This is a dockerized instance of MongoDB V3 based upon the [official
 mongo docker image](https://hub.docker.com/_/mongo/) with additional
 customizations specific to the AIRR Data Commons.
 
+## Bug Reporting
+
+File issues at the top-level [ADC API github repository](https://github.com/airr-community/adc-api/).
+
 ## Deployments
 
 It is expected that adc-api-mongodb-repository will be deployed as one
